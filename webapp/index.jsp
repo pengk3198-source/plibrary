@@ -259,8 +259,10 @@ body {
     <p>원하는 책을 검색하고 언제든지 읽어보세요</p>
 
     <div class="search-box">
-        <input type="text" placeholder="책 이름 검색...">
-        <button>검색</button>
+        <form action="search.jsp" method="get">
+            <input type="text" name="keyword" placeholder="책 이름 검색...">
+            <button type="submit">검색</button>
+        </form>
     </div>
     
 </div>
@@ -271,7 +273,7 @@ body {
 <div class="books">
 
 <%
-String path = "C:/jsp/apache-tomcat-11.0.18/webapps/library/books";
+String path = application.getRealPath("/books");
 File folder = new File(path);
 File[] files = folder.listFiles();
 
@@ -286,7 +288,7 @@ if(files != null){
  %>           
 
     <div class="book">
-        <img src="covers/<%= title %>.jpg" class="book-cover">
+        <img src="covers/<%= title %>.jpg" class="book-cover" onerror="this.style.display='none'">
 
         <div class="info">
             <h4><%= title %></h4>
@@ -336,8 +338,8 @@ function searchBook() {
         <h2>로그인</h2>
 
         <form action="loginCheck.jsp" method="post">
-            <input type="text" name="userId" placeholder="아이디" required>
-            <input type="password" name="userPw" placeholder="비밀번호" required>
+            <input type="text" name="id" placeholder="아이디" required>
+            <input type="password" name="pw" placeholder="비밀번호" required>
             <button type="submit">로그인</button>
         </form>
     </div>
